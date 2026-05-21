@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Workzap AI Business Automation Insights</title>
+<meta name="description" content="Practical AI automation insights for businesses in Pakistan, UAE and South Asia. New articles published daily on ERP, automation, and digital transformation.">
+<meta name="keywords" content="AI automation blog Pakistan, ERP insights UAE, business automation South Asia, garment ERP blog">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Blog — Workzap AI Business Automation Insights">
+<meta property="og:description" content="Practical AI automation insights for businesses in Pakistan, UAE and South Asia. New articles published daily on ERP, automation, and digital transformation.">
+<meta property="og:url" content="https://workzap.ai">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Workzap AI Business Automation Insights">
+<meta name="twitter:description" content="Practical AI automation insights for businesses in Pakistan, UAE and South Asia. New articles published daily on ERP, automation, and digital transformation.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Workzap","url":"https://workzap.ai","email":"hello@workzap.ai","areaServed":["PK","AE","SA"]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","GA_MEASUREMENT_ID");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#fff;--bg-alt:#F5F5F7;--bg-dark:#1D1D1F;--surface:#fff;--surface2:#F5F5F7;
+  --text:#1D1D1F;--text2:#6E6E73;--text3:#86868B;
+  --border:#D2D2D7;--borderl:#E8E8ED;
+  --blue:#0071E3;--blueh:#0077ED;--bluel:rgba(0,113,227,0.1);
+  --green:#34C759;--red:#FF3B30;--orange:#FF9500;--yellow:#FFCC00;
+  --r:18px;--rs:12px;
+  --sh:0 2px 20px rgba(0,0,0,0.06);--shl:0 8px 40px rgba(0,0,0,0.10);--shxl:0 20px 60px rgba(0,0,0,0.14);
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:"Figtree",-apple-system,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6;}
+
+/* COOKIE */
+#ck{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;max-width:540px;width:calc(100% - 32px);box-shadow:var(--shxl);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.ck-t{flex:1;font-size:13px;color:var(--text2);line-height:1.6;min-width:180px;}
+.ck-t a{color:var(--blue);text-decoration:none;}
+.ck-b{display:flex;gap:8px;flex-shrink:0;}
+.ck-a{background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:980px;font-family:"Figtree",sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.ck-d{background:none;border:1px solid var(--border);color:var(--text2);padding:8px 18px;border-radius:980px;font-family:"Figtree",sans-serif;font-size:13px;cursor:pointer;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,0.88);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.07);transition:background .3s var(--ease);}
+.nav-logo{font-family:"Onest",sans-serif;font-size:18px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.03em;}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text);text-decoration:none;opacity:.8;transition:opacity .2s;}
+.nav-links a:hover{opacity:1;}
+.nav-links a.active{opacity:1;color:var(--blue);}
+.nav-cta{font-family:"Figtree",sans-serif;font-size:13px;font-weight:600;color:#fff;background:var(--blue);border:none;cursor:pointer;padding:7px 16px;border-radius:980px;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap;}
+.nav-cta:hover{background:var(--blueh);transform:scale(1.02);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s var(--ease);}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 24px 24px;z-index:99;flex-direction:column;gap:0;}
+.mob-menu a{display:block;padding:13px 0;font-size:17px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--borderl);}
+.mob-cta-wrap{margin-top:16px;}
+.mob-cta-wrap a{display:block;text-align:center;background:var(--blue);color:#fff;padding:13px;border-radius:980px;font-family:"Figtree",sans-serif;font-size:16px;font-weight:600;text-decoration:none;}
+
+/* BUTTONS */
+.btn-lg{font-family:"Figtree",sans-serif;font-size:17px;font-weight:600;color:#fff;background:var(--blue);border:none;cursor:pointer;padding:16px 32px;border-radius:980px;text-decoration:none;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:8px;}
+.btn-lg:hover{background:var(--blueh);transform:scale(1.02);}
+.btn-out{font-family:"Figtree",sans-serif;font-size:17px;font-weight:600;color:var(--blue);background:none;border:1.5px solid var(--blue);cursor:pointer;padding:15px 32px;border-radius:980px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-out:hover{background:var(--bluel);}
+.btn-sm{font-family:"Figtree",sans-serif;font-size:14px;font-weight:600;color:var(--blue);background:var(--bluel);border:none;cursor:pointer;padding:10px 20px;border-radius:980px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-sm:hover{background:rgba(0,113,227,0.15);}
+
+/* SECTIONS */
+section{padding:96px 28px;transition:background .3s;}
+.container{max-width:980px;margin:0 auto;}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+h2.st{font-family:"Onest",sans-serif;font-weight:800;font-size:clamp(28px,4vw,50px);letter-spacing:-.025em;line-height:1.1;margin-bottom:16px;color:var(--text);}
+.ssub{font-size:18px;color:var(--text2);max-width:560px;line-height:1.65;}
+.tc{text-align:center;}.tc .ssub{margin:0 auto;}
+
+/* CARDS */
+.card{background:var(--surface);border:1.5px solid var(--borderl);border-radius:var(--r);padding:28px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shl);}
+.card-icon{width:44px;height:44px;background:var(--bluel);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.card h3{font-family:"Onest",sans-serif;font-size:16px;font-weight:700;margin-bottom:7px;color:var(--text);}
+.card p{font-size:13px;color:var(--text2);line-height:1.65;}
+
+/* PILL EYEBROW */
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--blue);background:var(--bluel);padding:5px 14px;border-radius:980px;letter-spacing:.02em;text-transform:uppercase;}
+.pill::before{content:"";width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+
+/* DARK SECTIONS */
+.dark-sec{background:var(--bg-dark);}
+.dark-sec .eyebrow{color:#5AA9FF;}
+.dark-sec h2.st{color:#fff;}
+.dark-sec .ssub{color:rgba(255,255,255,0.5);}
+
+/* FADE ANIMATIONS */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.fu.vis{opacity:1;transform:translateY(0);}
+.fu.d1{transition-delay:.1s;}.fu.d2{transition-delay:.2s;}
+.fu.d3{transition-delay:.3s;}.fu.d4{transition-delay:.4s;}.fu.d5{transition-delay:.5s;}
+
+/* WHATSAPP */
+.wa-wrap{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.wa-tip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-weight:500;color:var(--text);box-shadow:var(--shl);white-space:nowrap;opacity:0;transform:translateX(6px);transition:all .2s;pointer-events:none;}
+.wa-wrap:hover .wa-tip{opacity:1;transform:translateX(0);}
+.wa-btn{width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,0.5);}
+.wa-svg{width:26px;height:26px;fill:#fff;}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;background:var(--blue);padding:14px 20px;text-align:center;}
+.sticky-cta a{color:#fff;font-family:"Figtree",sans-serif;font-size:15px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;}
+
+/* PAGE HERO (non-homepage) */
+.page-hero{padding:120px 28px 72px;background:var(--bg-alt);text-align:center;border-bottom:1px solid var(--borderl);}
+.page-hero h1{font-family:"Onest",sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:16px;}
+.page-hero p{font-size:18px;color:var(--text2);max-width:560px;margin:0 auto;line-height:1.65;}
+
+/* FOOTER */
+footer{background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.06);padding:56px 28px 32px;}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;max-width:980px;margin:0 auto 40px;}
+.foot-brand a{font-family:"Onest",sans-serif;font-size:19px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.03em;display:block;margin-bottom:10px;}
+.foot-brand a span{color:var(--blue);}
+.foot-brand p{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.foot-email{font-size:13px;color:rgba(255,255,255,0.45);margin-top:10px;}
+.foot-email a{color:var(--blue);text-decoration:none;}
+.foot-col h4{font-family:"Onest",sans-serif;font-size:11px;font-weight:700;color:#fff;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
+.foot-col ul{list-style:none;}
+.foot-col ul li{margin-bottom:9px;}
+.foot-col ul li a{font-size:13px;color:rgba(255,255,255,0.42);text-decoration:none;transition:color .2s;}
+.foot-col ul li a:hover{color:#fff;}
+.foot-bottom{max-width:980px;margin:0 auto;padding-top:22px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.28);flex-wrap:wrap;gap:12px;}
+.fbl{display:flex;gap:20px;list-style:none;flex-wrap:wrap;}
+.fbl a{color:rgba(255,255,255,0.28);text-decoration:none;transition:color .2s;}
+.fbl a:hover{color:#fff;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 16px;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  section{padding:64px 20px;}
+  .page-hero{padding:96px 20px 56px;}
+  .sticky-cta{display:block;}
+  .wa-wrap{bottom:80px;right:16px;}
+  .btn-lg,.btn-out{width:100%;justify-content:center;}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:28px;}
+}
+@media(max-width:480px){
+  .foot-grid{grid-template-columns:1fr;gap:24px;}
+  section{padding:52px 18px;}
+}
+
+
+.blog-notice{background:var(--bluel);border-radius:var(--r);padding:16px 20px;text-align:center;font-size:14px;color:var(--blue);font-weight:500;margin-bottom:40px;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.bc{border-radius:var(--r);overflow:hidden;border:1.5px solid var(--borderl);background:var(--surface);transition:all .25s var(--ease);text-decoration:none;color:inherit;display:block;}
+.bc:hover{transform:translateY(-4px);box-shadow:var(--shl);}
+.bt{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;}
+.bt.blue{background:linear-gradient(135deg,#E8F1FD,#C8DEFA);}
+.bt.green{background:linear-gradient(135deg,#E8F7EE,#C8EDD6);}
+.bt.orange{background:linear-gradient(135deg,#FEF3E8,#FDDEBA);}
+.bt.purple{background:linear-gradient(135deg,#F0E8FD,#DAC8FA);}
+.bt.red{background:linear-gradient(135deg,#FDE8E8,#FACAC8);}
+.bt.teal{background:linear-gradient(135deg,#E8FDF8,#C8FAF0);}
+.bt.yellow{background:linear-gradient(135deg,#FEFDE8,#FAFAC8);}
+.bt.indigo{background:linear-gradient(135deg,#E8EEF D,#C8D2FA);}
+.bt.pink{background:linear-gradient(135deg,#FDE8F5,#FAC8E8);}
+.bb{padding:18px;}
+.btag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.bc h3{font-family:"Onest",sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;color:var(--text);line-height:1.4;}
+.bc p{font-size:12px;color:var(--text2);line-height:1.6;}
+.bmeta{display:flex;gap:8px;margin-top:10px;font-size:11px;color:var(--text3);}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.blog-grid{grid-template-columns:1fr;}}
+
+</style>
+</head>
+<body>
+
+<div id="ck">
+  <div class="ck-t">We use cookies to improve your experience. <a href="faq.html">Privacy Policy</a></div>
+  <div class="ck-b">
+    <button class="ck-d" onclick="dkCk()">Decline</button>
+    <button class="ck-a" onclick="ackCk()">Accept</button>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Work<span>zap</span></a>
+  <ul class="nav-links">
+    <li><a href="features.html">Features</a></li>
+    <li><a href="why-workzap.html">Why Workzap</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="index.html#quote" class="nav-cta">Get a Quote →</a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="features.html" onclick="toggleMenu()">Features</a>
+  <a href="why-workzap.html" onclick="toggleMenu()">Why Workzap</a>
+  <div class="mob-cta-wrap">
+    <a href="index.html#quote" onclick="toggleMenu()">Get a Quote →</a>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="pill" style="justify-content:center;margin-bottom:16px;">Workzap Insights</div>
+  <h1>AI automation for<br>real businesses.</h1>
+  <p>Practical insights on AI, business automation, and digital transformation for companies in Pakistan, UAE and South Asia. New articles published daily.</p>
+</div>
+
+<section style="background:var(--bg);padding:72px 28px;">
+  <div class="container">
+    <div class="blog-notice fu">📅 New insights published every day — AI-written, SEO-optimised, always relevant to your business.</div>
+    <div class="blog-grid">
+
+      <a href="#" class="bc fu">
+        <div class="bt blue">🧵</div>
+        <div class="bb"><div class="btag">Garment & Textile · AI Automation</div><h3>How Pakistani Garment Factories Are Eliminating Manual Work with AI</h3><p>The garment export sector is transforming. Forward-thinking factories are replacing spreadsheets and WhatsApp chaos with intelligent, automated systems that track every order, invoice, and production batch in real time.</p><div class="bmeta"><span>20 May 2026</span><span>·</span><span>5 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d1">
+        <div class="bt green">💸</div>
+        <div class="bb"><div class="btag">Finance Automation · Pakistan</div><h3>The Real Cost of Running Your Business on WhatsApp and Excel</h3><p>Every missed invoice, forgotten payment, and spreadsheet error has a price. Most SME owners don't know how much manual data management is actually costing them every month — until they calculate it.</p><div class="bmeta"><span>19 May 2026</span><span>·</span><span>6 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d2">
+        <div class="bt orange">📊</div>
+        <div class="bb"><div class="btag">ERP Strategy · Pakistan & UAE</div><h3>Why Custom ERP Systems Are Replacing SAP and Odoo for SMEs</h3><p>Generic enterprise software was built for corporations with thousands of employees and IT departments. Here's why Pakistani and UAE businesses are choosing custom-built systems that actually fit their workflow.</p><div class="bmeta"><span>18 May 2026</span><span>·</span><span>7 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d3">
+        <div class="bt purple">🤖</div>
+        <div class="bb"><div class="btag">AI Business Tools · 2026</div><h3>5 Signs Your Business Is Ready for AI Automation</h3><p>Not every business is in the right position to automate yet — and rushing into it creates more problems than it solves. Here are the five clear indicators that your business is ready to make the transition.</p><div class="bmeta"><span>17 May 2026</span><span>·</span><span>4 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d4">
+        <div class="bt teal">🇦🇪</div>
+        <div class="bb"><div class="btag">UAE Business · Automation</div><h3>How Dubai Trading Companies Are Managing Operations with AI Dashboards</h3><p>Import/export businesses in the UAE face unique complexity — multi-currency, multi-supplier, tight margins. Here's how AI-powered dashboards are giving trading companies complete operational visibility.</p><div class="bmeta"><span>16 May 2026</span><span>·</span><span>5 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d5">
+        <div class="bt red">🏭</div>
+        <div class="bb"><div class="btag">Manufacturing · Pakistan</div><h3>From Paper to Platform: How Pakistani Manufacturers Are Going Digital</h3><p>Manufacturing businesses in Pakistan are increasingly moving away from paper-based production tracking and towards intelligent systems that give real-time visibility across the entire factory floor.</p><div class="bmeta"><span>15 May 2026</span><span>·</span><span>6 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu">
+        <div class="bt yellow">📦</div>
+        <div class="bb"><div class="btag">Inventory Management · AI</div><h3>AI-Powered Inventory Management: What Pakistani Exporters Need to Know</h3><p>Running out of stock costs you orders. Overstocking ties up cash. AI inventory systems are solving both problems simultaneously for garment and manufacturing exporters across Pakistan.</p><div class="bmeta"><span>14 May 2026</span><span>·</span><span>5 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d1">
+        <div class="bt blue">💰</div>
+        <div class="bb"><div class="btag">Finance Automation · SME</div><h3>Finance Automation for Pakistani SMEs: What's Possible in 2026</h3><p>Automated invoicing, real-time receivables tracking, cash flow forecasting — these used to be features only large corporations could afford. In 2026, they're accessible to any SME willing to make the move.</p><div class="bmeta"><span>13 May 2026</span><span>·</span><span>6 min read</span></div></div>
+      </a>
+
+      <a href="#" class="bc fu d2">
+        <div class="bt green">🔮</div>
+        <div class="bb"><div class="btag">Future of Business · South Asia</div><h3>The Future of Business Automation in Pakistan and the Middle East</h3><p>AI adoption is accelerating across South Asia and the Gulf at a pace few anticipated. The businesses building intelligent systems now will have a structural advantage that compounds over the next decade.</p><div class="bmeta"><span>12 May 2026</span><span>·</span><span>7 min read</span></div></div>
+      </a>
+
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <p style="font-size:16px;color:var(--text2);margin-bottom:20px;">Want automation insights for your specific industry?</p>
+      <a href="index.html#quote" class="btn-lg" style="font-size:15px;padding:13px 28px;">Talk to Us →</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="index.html">Work<span>zap</span></a>
+      <p>Custom AI-powered ERP systems built one department at a time — for businesses in Pakistan, UAE, Saudi Arabia and beyond.</p>
+      <div class="foot-email">hello@workzap.ai &nbsp;|&nbsp; <a href="https://wa.me/923008209415">WhatsApp</a></div>
+    </div>
+    <div class="foot-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="index.html#products">Workzap Core</a></li>
+        <li><a href="index.html#products">Workzap Command</a></li>
+        <li><a href="index.html#products">Workzap Enterprise</a></li>
+        <li><a href="index.html#quote">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="why-workzap.html">Why Workzap</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Locations</h4>
+      <ul>
+        <li><a href="index.html">Pakistan</a></li>
+        <li><a href="index.html">Dubai & UAE</a></li>
+        <li><a href="index.html">Saudi Arabia</a></li>
+        <li><a href="faq.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Workzap. All rights reserved.</span>
+    <ul class="fbl">
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="faq.html">Privacy</a></li>
+      <li><a href="faq.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="wa-wrap">
+  <div class="wa-tip">Chat on WhatsApp</div>
+  <a class="wa-btn" href="https://wa.me/923008209415?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20Workzap" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg class="wa-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<div class="sticky-cta">
+  <a href="index.html#quote">Get Your Custom Quote →</a>
+</div>
+<script>
+
+// COOKIE
+if(localStorage.getItem("wz-ck")){const el=document.getElementById("ck");if(el)el.style.display="none";}
+function ackCk(){localStorage.setItem("wz-ck","y");const el=document.getElementById("ck");if(el)el.style.display="none";}
+function dkCk(){localStorage.setItem("wz-ck","n");const el=document.getElementById("ck");if(el)el.style.display="none";}
+
+// MOBILE MENU
+let mOpen=false;
+function toggleMenu(){
+  mOpen=!mOpen;
+  const m=document.getElementById("mobMenu");
+  m.style.display=mOpen?"flex":"none";
+  const h=document.getElementById("ham");
+  if(h){
+    h.children[0].style.transform=mOpen?"rotate(45deg) translate(5px,5px)":"";
+    h.children[1].style.opacity=mOpen?"0":"1";
+    h.children[2].style.transform=mOpen?"rotate(-45deg) translate(5px,-5px)":"";
+  }
+}
+
+// SCROLL ANIMATIONS
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("vis");});
+},{threshold:0.1,rootMargin:"0px 0px -24px 0px"});
+document.querySelectorAll(".fu").forEach(el=>obs.observe(el));
+
+// NAV SCROLL
+window.addEventListener("scroll",()=>{
+  const n=document.getElementById("navbar");
+  if(n) n.style.background=window.scrollY>20?"rgba(255,255,255,0.97)":"rgba(255,255,255,0.88)";
+});
+
+
+</script>
+</body>
+</html>
