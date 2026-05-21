@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workzap Admin — Lead Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F5F7;--surface:#fff;--border:#D2D2D7;--borderl:#E8E8ED;
+  --text:#1D1D1F;--text2:#6E6E73;--text3:#86868B;
+  --blue:#0071E3;--bluel:rgba(0,113,227,0.1);
+  --green:#34C759;--red:#FF3B30;--orange:#FF9500;--purple:#AF52DE;--yellow:#FFCC00;
+  --r:12px;--ease:cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:"Figtree",-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+#loginWrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+.login-card{background:var(--surface);border-radius:20px;padding:44px 36px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,0,0,0.10);border:1px solid var(--borderl);}
+.login-logo{font-family:"Onest",sans-serif;font-size:24px;font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:4px;}
+.login-logo span{color:var(--blue);}
+.login-sub{font-size:13px;color:var(--text2);margin-bottom:28px;}
+.login-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;display:block;}
+.login-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:"Figtree",sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .2s;margin-bottom:16px;}
+.login-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--bluel);}
+.login-btn{width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-family:"Figtree",sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;}
+.login-btn:hover{background:#0077ED;}
+.login-err{font-size:13px;color:var(--red);margin-top:10px;display:none;}
+
+/* LAYOUT */
+#dashWrap{display:none;min-height:100vh;}
+.adm-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--borderl);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+.adm-logo{font-family:"Onest",sans-serif;font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.03em;}
+.adm-logo span{color:var(--blue);}
+.adm-badge{font-size:10px;font-weight:700;background:var(--bluel);color:var(--blue);padding:3px 8px;border-radius:980px;letter-spacing:.05em;margin-left:8px;text-transform:uppercase;}
+.nav-r{display:flex;align-items:center;gap:12px;}
+.nav-time{font-size:12px;color:var(--text3);}
+.logout-btn{font-size:13px;font-weight:500;color:var(--text2);background:none;border:1.5px solid var(--borderl);padding:5px 14px;border-radius:980px;cursor:pointer;transition:all .2s;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* MAIN */
+.adm-main{padding:24px;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--surface);border-radius:var(--r);padding:16px 18px;border:1px solid var(--borderl);}
+.stat-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.stat-val{font-family:"Onest",sans-serif;font-size:28px;font-weight:800;color:var(--text);line-height:1;}
+.stat-sub{font-size:11px;color:var(--text2);margin-top:4px;}
+.stat-card.blue .stat-val{color:var(--blue);}
+.stat-card.green .stat-val{color:var(--green);}
+.stat-card.orange .stat-val{color:var(--orange);}
+.stat-card.red .stat-val{color:var(--red);}
+
+/* TOOLBAR */
+.toolbar{background:var(--surface);border-radius:var(--r);padding:14px 16px;border:1px solid var(--borderl);display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.search-wrap{flex:1;min-width:200px;position:relative;}
+.search-wrap input{width:100%;padding:8px 12px 8px 34px;border:1.5px solid var(--borderl);border-radius:8px;font-family:"Figtree",sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .2s;}
+.search-wrap input:focus{border-color:var(--blue);}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;}
+.tb-select{padding:8px 12px;border:1.5px solid var(--borderl);border-radius:8px;font-family:"Figtree",sans-serif;font-size:13px;color:var(--text);outline:none;cursor:pointer;background:var(--surface);}
+.tb-select:focus{border-color:var(--blue);}
+.refresh-btn{padding:8px 16px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-family:"Figtree",sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.refresh-btn:hover{background:#0077ED;}
+.count-label{font-size:12px;color:var(--text3);white-space:nowrap;}
+
+/* TABLE */
+.table-wrap{background:var(--surface);border-radius:var(--r);border:1px solid var(--borderl);overflow:hidden;}
+.leads-table{width:100%;border-collapse:collapse;font-size:13px;}
+.leads-table th{padding:10px 14px;background:var(--bg);text-align:left;font-size:11px;font-weight:700;color:var(--text2);letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--borderl);white-space:nowrap;}
+.leads-table td{padding:12px 14px;border-bottom:1px solid var(--borderl);vertical-align:top;}
+.leads-table tr:last-child td{border-bottom:none;}
+.leads-table tr.lead-row{cursor:pointer;transition:background .15s;}
+.leads-table tr.lead-row:hover td{background:#F9F9FB;}
+.leads-table tr.lead-row.expanded td{background:var(--bluel);}
+.lead-name{font-weight:600;color:var(--text);}
+.lead-company{font-size:12px;color:var(--text2);}
+.lead-email{font-size:12px;color:var(--blue);}
+.lead-date{font-size:12px;color:var(--text2);white-space:nowrap;}
+.lead-time{font-size:11px;color:var(--text3);}
+.prod-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:980px;white-space:nowrap;}
+.prod-core{background:var(--bluel);color:var(--blue);}
+.prod-cmd{background:rgba(175,82,222,0.1);color:var(--purple);}
+.prod-ent{background:rgba(52,199,89,0.1);color:var(--green);}
+
+/* STATUS BADGES */
+.status-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:980px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.status-badge::before{content:"";width:6px;height:6px;border-radius:50%;}
+.s-new{background:var(--bluel);color:var(--blue);}
+.s-new::before{background:var(--blue);}
+.s-reviewed{background:rgba(255,149,0,0.12);color:var(--orange);}
+.s-reviewed::before{background:var(--orange);}
+.s-proposal{background:rgba(175,82,222,0.1);color:var(--purple);}
+.s-proposal::before{background:var(--purple);}
+.s-won{background:rgba(52,199,89,0.12);color:var(--green);}
+.s-won::before{background:var(--green);}
+.s-lost{background:rgba(255,59,48,0.1);color:var(--red);}
+.s-lost::before{background:var(--red);}
+
+/* EXPAND ROW */
+.expand-row{display:none;}
+.expand-row td{padding:0;}
+.expand-inner{padding:20px 24px;background:#F9F9FB;border-top:1px solid var(--borderl);}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
+.exp-field{background:var(--surface);border-radius:8px;padding:12px 14px;border:1px solid var(--borderl);}
+.exp-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
+.exp-val{font-size:13px;color:var(--text);font-weight:500;line-height:1.4;}
+.exp-val a{color:var(--blue);text-decoration:none;}
+.status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.status-row label{font-size:12px;font-weight:600;color:var(--text2);margin-right:4px;}
+.upd-btn{font-size:12px;font-weight:600;padding:6px 14px;border-radius:980px;border:none;cursor:pointer;transition:all .2s;}
+.upd-new{background:var(--bluel);color:var(--blue);}
+.upd-reviewed{background:rgba(255,149,0,0.12);color:var(--orange);}
+.upd-proposal{background:rgba(175,82,222,0.1);color:var(--purple);}
+.upd-won{background:rgba(52,199,89,0.12);color:var(--green);}
+.upd-lost{background:rgba(255,59,48,0.1);color:var(--red);}
+.upd-btn:hover{opacity:.8;transform:scale(1.03);}
+.notes-area{width:100%;padding:10px 12px;border:1.5px solid var(--borderl);border-radius:8px;font-family:"Figtree",sans-serif;font-size:13px;color:var(--text);resize:vertical;min-height:70px;outline:none;margin-top:10px;transition:border-color .2s;}
+.notes-area:focus{border-color:var(--blue);}
+.save-notes{margin-top:8px;padding:7px 18px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-family:"Figtree",sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.dept-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.dept-tag{font-size:11px;background:var(--bg);border:1px solid var(--borderl);border-radius:980px;padding:2px 9px;color:var(--text2);}
+.expand-arrow{transition:transform .2s;display:inline-block;color:var(--text3);}
+.expanded .expand-arrow{transform:rotate(90deg);}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text2);}
+.empty-state .ei{font-size:44px;margin-bottom:12px;}
+.empty-state h3{font-family:"Onest",sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
+
+/* LOADING */
+.loading{text-align:center;padding:48px;color:var(--text2);font-size:14px;}
+.spinner{width:24px;height:24px;border:2px solid var(--borderl);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){.stats-row{grid-template-columns:repeat(3,1fr);}.exp-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.stats-row{grid-template-columns:1fr 1fr;}.exp-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">Work<span>zap</span></div>
+    <div class="login-sub">Admin Dashboard — Leads & Pipeline</div>
+    <label class="login-label">Password</label>
+    <input class="login-input" type="password" id="pwInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Access Dashboard →</button>
+    <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashWrap">
+  <nav class="adm-nav">
+    <div style="display:flex;align-items:center;">
+      <div class="adm-logo">Work<span>zap</span></div>
+      <span class="adm-badge">Admin</span>
+    </div>
+    <div class="nav-r">
+      <span class="nav-time" id="navTime"></span>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="adm-main">
+    <!-- STATS -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card blue"><div class="stat-label">Total Leads</div><div class="stat-val" id="sTot">—</div><div class="stat-sub">All time</div></div>
+      <div class="stat-card orange"><div class="stat-label">New</div><div class="stat-val" id="sNew">—</div><div class="stat-sub">Needs review</div></div>
+      <div class="stat-card"><div class="stat-label">Active</div><div class="stat-val" id="sAct">—</div><div class="stat-sub">In progress</div></div>
+      <div class="stat-card green"><div class="stat-label">Won</div><div class="stat-val" id="sWon">—</div><div class="stat-sub">Closed deals</div></div>
+      <div class="stat-card red"><div class="stat-label">Lost</div><div class="stat-val" id="sLost">—</div><div class="stat-sub">Didn't convert</div></div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchBox" placeholder="Search by name, company or email..." oninput="renderTable()">
+      </div>
+      <select class="tb-select" id="statusFilter" onchange="renderTable()">
+        <option value="">All Statuses</option>
+        <option>New</option>
+        <option>Reviewed</option>
+        <option>Proposal Sent</option>
+        <option>Won</option>
+        <option>Lost</option>
+      </select>
+      <select class="tb-select" id="indFilter" onchange="renderTable()">
+        <option value="">All Industries</option>
+        <option>Garment & Textile Export</option>
+        <option>Manufacturing & Production</option>
+        <option>Trading & Import/Export</option>
+        <option>Restaurant & Food & Beverage</option>
+        <option>Retail & Wholesale</option>
+        <option>Construction & Real Estate</option>
+        <option>Other</option>
+      </select>
+      <span class="count-label" id="countLabel">0 leads</span>
+      <button class="refresh-btn" onclick="loadLeads()">↻ Refresh</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+      <div id="tableContainer"><div class="loading"><div class="spinner"></div>Loading leads...</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ADMIN_KEY = 'workzap2026';
+let allLeads = [];
+let expandedId = null;
+
+// ── AUTH ──
+function doLogin(){
+  const pw = document.getElementById('pwInput').value;
+  if(pw === ADMIN_KEY){
+    sessionStorage.setItem('wz_admin','1');
+    document.getElementById('loginWrap').style.display='none';
+    document.getElementById('dashWrap').style.display='block';
+    startClock();
+    loadLeads();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+    document.getElementById('pwInput').value='';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('wz_admin');
+  document.getElementById('dashWrap').style.display='none';
+  document.getElementById('loginWrap').style.display='flex';
+}
+
+if(sessionStorage.getItem('wz_admin')==='1'){
+  document.getElementById('loginWrap').style.display='none';
+  document.getElementById('dashWrap').style.display='block';
+  startClock();
+  setTimeout(loadLeads,100);
+}
+
+// ── CLOCK ──
+function startClock(){
+  const el = document.getElementById('navTime');
+  function tick(){
+    const now = new Date();
+    el.textContent = now.toLocaleString('en-PK',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  }
+  tick(); setInterval(tick, 30000);
+}
+
+// ── LOAD LEADS ──
+async function loadLeads(){
+  document.getElementById('tableContainer').innerHTML='<div class="loading"><div class="spinner"></div>Loading leads...</div>';
+  try {
+    const res = await fetch('/api/leads',{ headers:{'x-admin-key': ADMIN_KEY} });
+    if(res.status===401){ doLogout(); return; }
+    const data = await res.json();
+    allLeads = data.leads || [];
+    updateStats();
+    renderTable();
+  } catch(e){
+    document.getElementById('tableContainer').innerHTML='<div class="empty-state"><div class="ei">⚠️</div><h3>Could not load leads</h3><p>Check your connection and try again.</p></div>';
+  }
+}
+
+// ── STATS ──
+function updateStats(){
+  const tot = allLeads.length;
+  const sNew = allLeads.filter(l=>l.status==='New').length;
+  const sAct = allLeads.filter(l=>l.status==='Reviewed'||l.status==='Proposal Sent').length;
+  const sWon = allLeads.filter(l=>l.status==='Won').length;
+  const sLos = allLeads.filter(l=>l.status==='Lost').length;
+  document.getElementById('sTot').textContent=tot;
+  document.getElementById('sNew').textContent=sNew;
+  document.getElementById('sAct').textContent=sAct;
+  document.getElementById('sWon').textContent=sWon;
+  document.getElementById('sLost').textContent=sLos;
+}
+
+// ── STATUS CLASS ──
+function sCls(s){
+  const m={'New':'s-new','Reviewed':'s-reviewed','Proposal Sent':'s-proposal','Won':'s-won','Lost':'s-lost'};
+  return m[s]||'s-new';
+}
+function prodCls(p){
+  if(!p) return 'prod-core';
+  if(p.includes('Command')) return 'prod-cmd';
+  if(p.includes('Enterprise')) return 'prod-ent';
+  return 'prod-core';
+}
+
+// ── RENDER TABLE ──
+function renderTable(){
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  const sf = document.getElementById('statusFilter').value;
+  const inf = document.getElementById('indFilter').value;
+
+  let filtered = allLeads.filter(l=>{
+    const matchQ = !q || (l.name+l.company+l.email).toLowerCase().includes(q);
+    const matchS = !sf || l.status===sf;
+    const matchI = !inf || l.industry===inf;
+    return matchQ && matchS && matchI;
+  });
+
+  document.getElementById('countLabel').textContent = `${filtered.length} lead${filtered.length!==1?'s':''}`;
+
+  if(!filtered.length){
+    document.getElementById('tableContainer').innerHTML=
+      allLeads.length===0
+        ? '<div class="empty-state"><div class="ei">📬</div><h3>No leads yet</h3><p>Quote submissions will appear here in real time.</p></div>'
+        : '<div class="empty-state"><div class="ei">🔍</div><h3>No results</h3><p>Try adjusting your search or filters.</p></div>';
+    return;
+  }
+
+  const rows = filtered.map(l => {
+    const d = new Date(l.createdAt);
+    const dateStr = d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+    const timeStr = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const depts = Array.isArray(l.departments) ? l.departments : [];
+    const isExp = expandedId === l.id;
+
+    return `
+    <tr class="lead-row${isExp?' expanded':''}" onclick="toggleExpand('${l.id}')">
+      <td><div class="lead-date">${dateStr}</div><div class="lead-time">${timeStr}</div></td>
+      <td><div class="lead-name">${esc(l.name)}</div><div class="lead-company">${esc(l.company)}</div></td>
+      <td><div class="lead-email"><a href="mailto:${esc(l.email)}" onclick="event.stopPropagation()">${esc(l.email)}</a></div>${l.phone?`<div class="lead-company">${esc(l.phone)}</div>`:''}</td>
+      <td>${esc(l.industry||'—')}</td>
+      <td><span class="prod-badge ${prodCls(l.product)}">${esc(l.product||'Core')}</span></td>
+      <td>${esc(l.timeline||'—')}</td>
+      <td><span class="status-badge ${sCls(l.status)}">${esc(l.status)}</span></td>
+      <td><span class="expand-arrow">▶</span></td>
+    </tr>
+    <tr class="expand-row" id="exp_${l.id}" style="display:${isExp?'table-row':'none'}">
+      <td colspan="8">
+        <div class="expand-inner">
+          <div class="exp-grid">
+            <div class="exp-field"><div class="exp-label">Email</div><div class="exp-val"><a href="mailto:${esc(l.email)}">${esc(l.email)}</a></div></div>
+            <div class="exp-field"><div class="exp-label">Phone / WhatsApp</div><div class="exp-val">${esc(l.phone||'Not provided')}</div></div>
+            <div class="exp-field"><div class="exp-label">City & Country</div><div class="exp-val">${esc(l.city||'Not provided')}</div></div>
+            <div class="exp-field"><div class="exp-label">Industry</div><div class="exp-val">${esc(l.industry||'—')}</div></div>
+            <div class="exp-field"><div class="exp-label">Department Count</div><div class="exp-val">${esc(l.depts||'—')}</div></div>
+            <div class="exp-field"><div class="exp-label">Current Setup</div><div class="exp-val">${esc(l.currentSetup||'—')}</div></div>
+            <div class="exp-field"><div class="exp-label">Timeline</div><div class="exp-val">${esc(l.timeline||'—')}</div></div>
+            <div class="exp-field"><div class="exp-label">Product</div><div class="exp-val">${esc(l.product||'—')}</div></div>
+            <div class="exp-field"><div class="exp-label">Submitted</div><div class="exp-val">${new Date(l.createdAt).toLocaleString('en-GB')}</div></div>
+          </div>
+          ${depts.length ? `<div style="margin-bottom:14px;"><div class="exp-label" style="margin-bottom:6px;">Departments Requested</div><div class="dept-tags">${depts.map(d=>`<span class="dept-tag">${esc(d)}</span>`).join('')}</div></div>` : ''}
+          <div style="margin-bottom:12px;">
+            <div class="status-row">
+              <label>Update Status:</label>
+              <button class="upd-btn upd-new" onclick="updStatus('${l.id}','New');event.stopPropagation()">New</button>
+              <button class="upd-btn upd-reviewed" onclick="updStatus('${l.id}','Reviewed');event.stopPropagation()">Reviewed</button>
+              <button class="upd-btn upd-proposal" onclick="updStatus('${l.id}','Proposal Sent');event.stopPropagation()">Proposal Sent</button>
+              <button class="upd-btn upd-won" onclick="updStatus('${l.id}','Won');event.stopPropagation()">Won ✓</button>
+              <button class="upd-btn upd-lost" onclick="updStatus('${l.id}','Lost');event.stopPropagation()">Lost</button>
+            </div>
+          </div>
+          <div>
+            <div class="exp-label" style="margin-bottom:4px;">Admin Notes</div>
+            <textarea class="notes-area" id="notes_${l.id}" onclick="event.stopPropagation()" placeholder="Add notes about this lead...">${esc(l.adminNotes||'')}</textarea>
+            <button class="save-notes" onclick="saveNotes('${l.id}');event.stopPropagation()">Save Notes</button>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('tableContainer').innerHTML = `
+    <table class="leads-table">
+      <thead><tr>
+        <th>Date</th><th>Name & Company</th><th>Contact</th>
+        <th>Industry</th><th>Product</th><th>Timeline</th><th>Status</th><th></th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+// ── EXPAND ──
+function toggleExpand(id){
+  expandedId = expandedId===id ? null : id;
+  renderTable();
+}
+
+// ── UPDATE STATUS ──
+async function updStatus(id, status){
+  try {
+    const res = await fetch('/api/update',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-key':ADMIN_KEY},
+      body: JSON.stringify({id, status})
+    });
+    if(res.ok){
+      const lead = allLeads.find(l=>l.id===id);
+      if(lead) lead.status = status;
+      updateStats();
+      renderTable();
+      showToast(`Status updated → ${status}`);
+    }
+  } catch(e){ showToast('Error updating status'); }
+}
+
+// ── SAVE NOTES ──
+async function saveNotes(id){
+  const notes = document.getElementById(`notes_${id}`)?.value || '';
+  try {
+    const res = await fetch('/api/update',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-key':ADMIN_KEY},
+      body: JSON.stringify({id, status: allLeads.find(l=>l.id===id)?.status||'New', notes})
+    });
+    if(res.ok){
+      const lead = allLeads.find(l=>l.id===id);
+      if(lead) lead.adminNotes = notes;
+      showToast('Notes saved');
+    }
+  } catch(e){ showToast('Error saving notes'); }
+}
+
+// ── HELPERS ──
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>

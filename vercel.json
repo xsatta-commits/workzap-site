@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/features",    "destination": "/features.html" },
+    { "source": "/why-workzap", "destination": "/why-workzap.html" },
+    { "source": "/faq",         "destination": "/faq.html" },
+    { "source": "/blog",        "destination": "/blog.html" },
+    { "source": "/admin",       "destination": "/admin.html" }
+  ]
+}

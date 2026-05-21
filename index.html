@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workzap — AI-Powered Business Automation | Custom ERP & Dashboards</title>
-<meta name="description" content="Workzap builds custom AI-powered ERP systems and dashboards for businesses in Pakistan, UAE and South Asia. One department at a time. Built exactly for your industry.">
+<title>Workzap — AI Business Automation for Pakistan & UAE</title>
+<meta name="description" content="Workzap builds custom AI-powered ERP systems for businesses in Pakistan and UAE. One department at a time. Built exactly for your industry and workflow.">
 <meta name="keywords" content="AI automation Pakistan, custom ERP Pakistan, business dashboard UAE, workflow automation Karachi, AI ERP Lahore, ERP Dubai, garment ERP Pakistan">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Workzap — AI-Powered Business Automation | Custom ERP & Dashboards">
-<meta property="og:description" content="Workzap builds custom AI-powered ERP systems and dashboards for businesses in Pakistan, UAE and South Asia. One department at a time. Built exactly for your industry.">
+<meta property="og:description" content="Workzap builds custom AI-powered ERP systems for businesses in Pakistan and UAE. One department at a time. Built exactly for your industry and workflow.">
 <meta property="og:url" content="https://workzap.ai">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Workzap — AI-Powered Business Automation | Custom ERP & Dashboards">
-<meta name="twitter:description" content="Workzap builds custom AI-powered ERP systems and dashboards for businesses in Pakistan, UAE and South Asia. One department at a time. Built exactly for your industry.">
+<meta name="twitter:description" content="Workzap builds custom AI-powered ERP systems for businesses in Pakistan and UAE. One department at a time. Built exactly for your industry and workflow.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Workzap","url":"https://workzap.ai","email":"hello@workzap.ai","areaServed":["PK","AE","SA"]}</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","GA_MEASUREMENT_ID");</script>
+<!-- Google Analytics: add GA tag here when ready -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -312,8 +311,8 @@ footer{background:var(--bg-dark);border-top:1px solid rgba(255,255,255,0.06);pad
 
 /* COMPARISON */
 .comp-sec{background:var(--bg);}
-.comp-wrap{margin-top:44px;border-radius:var(--r);overflow:hidden;border:1.5px solid var(--borderl);box-shadow:var(--sh);}
-.ct{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-wrap{margin-top:44px;border-radius:var(--r);overflow-x:auto;border:1.5px solid var(--borderl);box-shadow:var(--sh);}.ct{min-width:560px;}
+.ct{width:100%;min-width:540px;border-collapse:collapse;font-size:13px;}
 .ct thead{background:var(--bg-dark);}
 .ct th{padding:14px 16px;text-align:center;font-family:"Onest",sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
 .ct th:first-child{text-align:left;width:35%;}
@@ -956,10 +955,27 @@ function sqt(){
     '<div class="res-r"><span>Current setup</span><span>'+(qd.cur||"–")+'</span></div>'+
     '<div class="res-r"><span>Timeline</span><span>'+(qd.tl||"–")+'</span></div>';
 }
-function sendQ(){
+async function sendQ(){
   const b=document.getElementById("sBtn");
-  b.textContent="✓ Submitted — We'll be in touch within 24 hours";
-  b.style.background="#34C759";b.disabled=true;
+  b.textContent="Sending…";b.disabled=true;
+  const deps=Array.from(document.querySelectorAll("input[name=dep]:checked")).map(c=>c.value);
+  const q=calcP();
+  const payload={
+    name:qd.name,company:qd.company,email:qd.email,
+    phone:qd.phone||'',city:qd.city||'',
+    industry:qd.ind||'',depts:qd.depts||'',deptList:deps,
+    currentSetup:qd.cur||'',timeline:qd.tl||'',product:q.product
+  };
+  try{
+    const r=await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(r.ok){
+      b.textContent="✓ Submitted — We'll be in touch within 24 hours";
+      b.style.background="#34C759";
+    } else { throw new Error('failed'); }
+  } catch(e){
+    b.textContent="Something went wrong — try again";
+    b.style.background="var(--red)";b.disabled=false;
+  }
 }
 
 </script>
